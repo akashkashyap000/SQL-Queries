@@ -1,0 +1,5 @@
+customers (1) → (Many) orders
+
+orders (1) → (Many) order_detail
+
+products (1) → (Many) order_detail
