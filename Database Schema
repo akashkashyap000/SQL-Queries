@@ -1,0 +1,39 @@
+Tables Structure
+1. customers
+Stores customer information and demographics
+
+customer_id    INT, PRIMARY KEY, AUTO_INCREMENT
+first_name     VARCHAR(50), NOT NULL
+last_name      VARCHAR(50), NOT NULL
+email          VARCHAR(100), UNIQUE
+phone          VARCHAR(15)
+city           VARCHAR(50)
+created_at     TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+
+2  products
+Manages product catalog and inventory
+
+product_id      INT, PRIMARY KEY, AUTO_INCREMENT
+product_name    VARCHAR(100), NOT NULL
+category        VARCHAR(50)
+price           DECIMAL(10,2), NOT NULL
+stock_quantity  INT, DEFAULT 0
+created_at      TIMESTAMP, DEFAULT CURRENT_TIMESTAMP
+
+3. orders
+Tracks customer orders and transactions.
+
+order_id        INT, PRIMARY KEY, AUTO_INCREMENT
+customer_id     INT, FOREIGN KEY (customers.customer_id)
+order_date      DATE, NOT NULL
+total_amount    DECIMAL(10,2), NOT NULL
+status          VARCHAR(20), DEFAULT 'pending'
+
+4. order_detail
+Contains line items for each order.
+
+order_detail_id INT, PRIMARY KEY, AUTO_INCREMENT
+order_id        INT, FOREIGN KEY (orders.order_id)
+product_id      INT, FOREIGN KEY (products.product_id)
+quantity        INT, NOT NULL
+price           DECIMAL(10,2), NOT NULL
